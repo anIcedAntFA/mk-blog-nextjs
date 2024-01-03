@@ -25,6 +25,8 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^18.4.3",
+    "@commitlint/config-conventional": "^18.4.3",
     "@storybook/addon-essentials": "^7.6.7",
     "@storybook/addon-interactions": "^7.6.7",
     "@storybook/addon-links": "^7.6.7",
@@ -45,6 +47,7 @@
     "clsx": "^2.1.0",
     "commitizen": "^4.3.0",
     "cypress": "^13.6.2",
+    "cz-emoji-conventional": "^1.0.2",
     "eslint": "^8.56.0",
     "eslint-config-next": "14.0.4",
     "eslint-config-prettier": "^9.1.0",
