@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "stylelint-config-standard-scss",
+    "stylelint-config-property-sort-order-smacss"
+  ],
+  "rules": {
+    "declaration-empty-line-before": null,
+    "order/properties-order": null,
+    "rule-empty-line-before": null,
+    "selector-class-pattern": null,
+    "length-zero-no-unit": null,
+    "alpha-value-notation": null,
+    "color-function-notation": null
+  }
+}
