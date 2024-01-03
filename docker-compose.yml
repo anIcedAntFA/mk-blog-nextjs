@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  next-app:
+    container_name: next-app
+    image: ngockhoi96/nextapp
+    build: .
+    ports:
+      - "4000:4000"
