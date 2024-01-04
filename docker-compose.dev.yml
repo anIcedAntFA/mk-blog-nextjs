@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  mk-blog-nextjs-dev:
+    container_name: mk-blog-nextjs-dev
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/app
+      - /app/.next
+      - /app/node_modules
+    ports:
+      - 4000:4000
+    env_file:
+      - ./.env.development

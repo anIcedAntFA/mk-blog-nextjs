@@ -1,5 +1,14 @@
-dc_up:
-  docker-compose up
+.PHONY: build-development
+build-development:
+	# Start the development docker container.
+	docker compose -f docker-compose.dev.yml build
 
-dc_down:
-  docker-compose down
+.PHONY: start-development
+start-development:
+	# Start the development docker container.
+	docker compose -f docker-compose.dev.yml up -d
+
+.PHONY: stop-development
+stop-development:
+	# Start the development docker container.
+	docker compose -f docker-compose.dev.yml down
