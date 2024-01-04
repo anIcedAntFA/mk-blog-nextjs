@@ -1,9 +1,16 @@
 version: "3"
 
 services:
-  next-app:
-    container_name: next-app
-    image: ngockhoi96/nextapp
-    build: .
+  mk-blog-nextjs:
+    container_name: mk-blog-nextjs
+    image: ngockhoi96/mkblognextjs
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./.next/standalone/.:/app
+      - /app/.next
+      - /app/node_modules
     ports:
       - "4000:4000"
