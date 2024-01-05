@@ -64,9 +64,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          build: pnpm run build
-          start: pnpm start
+          command: pnpm e2e
           browser: chrome
+          wait-on: "http://localhost:4000"
 
   Deploy-Preview:
     needs: [Unit-Testing, E2E-Testing]
