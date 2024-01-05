@@ -6,7 +6,7 @@
     "dev": "next dev --port 4000",
     "build": "next build",
     "start": "next start",
-    "serve": "npx serve@latest out -p 4000",
+    "serve": "pnpx serve@latest out -p 4000",
     "lint": "next lint --fix",
     "prettier": "prettier --write '**/**.{ts,js,tsx}' '*.{json,md,yml}'",
     "stylelint": "stylelint '**/*.scss'",
