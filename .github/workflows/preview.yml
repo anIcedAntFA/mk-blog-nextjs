@@ -8,9 +8,6 @@ on:
       - production
 jobs:
   EsLint-Stylelint:
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,10 +16,10 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Install Node.js ${{ matrix.node-version }}
+      - name: Install Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
@@ -33,9 +30,6 @@ jobs:
 
   Unit-Testing:
     needs: [EsLint-Stylelint]
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -44,10 +38,10 @@ jobs:
         uses: pnpm/action-setup@v2
         with:
           version: 8
-      - name: Install Node.js ${{ matrix.node-version }}
+      - name: Install Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
@@ -71,22 +65,19 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           build: pnpm run build
-          start: pnpm serve
+          start: pnpm start
           browser: chrome
 
   Deploy-Preview:
     needs: [Unit-Testing, E2E-Testing]
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Node.js ${{ matrix.node-version }}
+      - name: Install Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
