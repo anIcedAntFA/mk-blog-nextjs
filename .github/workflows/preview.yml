@@ -63,6 +63,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
@@ -71,7 +75,7 @@ jobs:
           browser: chrome
 
   Deploy-Preview:
-    needs: [Unit-Testing]
+    needs: [Unit-Testing, E2E-Testing]
     runs-on: ubuntu-latest
     strategy:
       matrix:
