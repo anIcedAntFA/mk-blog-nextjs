@@ -64,7 +64,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          command: pnpm e2e:ci
+          build: pnpm build
+          start: pnpm serve
           browser: chrome
 
   Deploy-Preview:
