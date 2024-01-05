@@ -1,6 +1,7 @@
 import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
 
+import styles from "./page.module.css";
 import vercelLogo from "/public/vercel.svg";
 
 export default function Home() {
@@ -11,6 +12,8 @@ export default function Home() {
           Get started by editing&nbsp;
           <code className={styles.code}>src/app/page.tsx</code>
         </p>
+
+        <Link href="/about">About</Link>
         <div>
           <a
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
