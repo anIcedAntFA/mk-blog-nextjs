@@ -47,15 +47,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - run: corepack enable
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          build: pnpm build
-          start: pnpm serve
+          build: npm run build
+          start: npm run serve
           browser: chrome
 
   Deploy-Preview:
