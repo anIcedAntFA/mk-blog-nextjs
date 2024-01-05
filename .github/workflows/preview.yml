@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: 18
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Check lint
         run: npm run lint
       - name: Check stylelint
@@ -35,7 +35,7 @@ jobs:
           node-version: 18
           cache: "npm"
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Unit Testing
         run: npm run test:coverage
 
