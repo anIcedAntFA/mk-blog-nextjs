@@ -1,4 +1,4 @@
-name: pnpm Example Workflow
+name: MK Blog Building CI
 on:
   push:
 jobs:
