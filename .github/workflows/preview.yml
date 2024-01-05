@@ -7,7 +7,28 @@ on:
     branches-ignore:
       - production
 jobs:
+  Lint-Styling-Test:
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - run: pnpm lint
+      - run: pnpm stylelint
+      - run: pnpm test:coverage
+
   Deploy-Preview:
+    needs: [Lint-Styling-Test]
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,18 +40,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: pnpm/action-setup@v2
-        name: Install pnpm
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         id: pnpm-install
         with:
           version: 8
           run_install: false
       - name: Install Vercel CLI
         run: pnpm add --global vercel@latest
-      - run: pnpm lint
-      - run: pnpm stylelint
-      - run: pnpm build
-      - run: pnpm test:coverage
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
