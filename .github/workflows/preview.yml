@@ -12,21 +12,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-      - name: Install Node.js 20
+      - name: Install Node.js 18
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: "pnpm"
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
       - name: Check lint
-        run: pnpm lint
+        run: npm run lint
       - name: Check stylelint
-        run: pnpm stylelint
+        run: npm run stylelint
 
   Unit-Components-Testing:
     needs: [EsLint-Stylelint]
@@ -34,19 +29,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
       - name: Install Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: "pnpm"
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
       - name: Unit Testing
-        run: pnpm test:coverage
+        run: npm run test:coverage
 
   E2E-Testing:
     needs: [EsLint-Stylelint]
@@ -57,15 +47,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          build: pnpm build
-          start: pnpm serve
+          build: npm run build
+          start: npm run serve
           browser: chrome
 
   Deploy-Preview:
@@ -74,17 +60,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install Node.js 20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          run_install: false
       - name: Install Vercel CLI
-        run: pnpm add --global vercel@latest
+        run: npm install --global vercel@latest
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
       - name: Build Project Artifacts
