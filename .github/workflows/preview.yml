@@ -19,7 +19,7 @@ jobs:
       - name: Install Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
@@ -28,7 +28,7 @@ jobs:
       - name: Check stylelint
         run: pnpm stylelint
 
-  Unit-Testing:
+  Unit-Components-Testing:
     needs: [EsLint-Stylelint]
     runs-on: ubuntu-latest
     steps:
@@ -41,7 +41,7 @@ jobs:
       - name: Install Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
@@ -68,7 +68,7 @@ jobs:
           browser: chrome
 
   Deploy-Preview:
-    needs: [Unit-Testing, E2E-Testing]
+    needs: [Unit-Components-Testing, E2E-Testing]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -76,7 +76,7 @@ jobs:
       - name: Install Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
