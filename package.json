@@ -6,12 +6,16 @@
     "dev": "next dev --port 4000",
     "build": "next build",
     "start": "next start",
+    "serve": "pnpx serve@latest out -p 4000",
     "lint": "next lint --fix",
+    "prettier": "prettier --write '**/**.{ts,js,tsx}' '*.{json,md,yml}'",
     "stylelint": "stylelint '**/*.scss'",
     "test": "vitest",
     "test:coverage": "vitest --coverage",
     "test:ui": "vitest --ui",
+    "cypress:open": "cypress open",
     "e2e": "start-server-and-test dev http://localhost:4000 \"cypress open --e2e\"",
+    "e2e:ci": "start-server-and-test dev http://localhost:4000 \"cypress open --e2e\"",
     "e2e:headless": "start-server-and-test dev http://localhost:4000 \"cypress run --e2e\"",
     "storybook": "storybook dev -p 6000",
     "build-storybook": "storybook build",
@@ -60,6 +64,7 @@
     "lint-staged": "^15.2.0",
     "prettier": "^3.1.1",
     "sass": "^1.69.7",
+    "start-server-and-test": "^2.0.3",
     "storybook": "^7.6.7",
     "stylelint": "^16.1.0",
     "stylelint-config-property-sort-order-smacss": "^10.0.0",
@@ -69,5 +74,9 @@
   },
   "volta": {
     "node": "20.10.0"
+  },
+  "engines": {
+    "node": ">=18.x",
+    "pnpm": "8"
   }
 }
